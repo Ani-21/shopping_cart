@@ -26,24 +26,24 @@ const SingleProduct = ({ prod }) => {
           {cart.some((p) => p.id === prod.id) ? (
             <Button
               variant="danger"
-              onClick={() => {
+              onClick={() =>
                 dispatch({
                   type: "REMOVE_FROM_CART",
                   payload: prod,
-                });
-              }}
+                })
+              }
             >
               Remove from cart
             </Button>
           ) : (
             <Button
-              onClick={() => {
+              disabled={!prod.inStock}
+              onClick={() =>
                 dispatch({
                   type: "ADD_TO_CART",
                   payload: prod,
-                });
-              }}
-              disabled={!prod.inStock}
+                })
+              }
             >
               {!prod.inStock ? "Out of Stock" : "Add to Cart"}
             </Button>
